@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShopList.Maui.Views.MainPage"
+             xmlns:viewmodels="clr-namespace:ShopList.Maui.ViewModels"
+             xmlns:models="clr-namespace:ShopList.Maui.Models"
+             Title="Lista de Compras">
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <CollectionView
+            Margin="8"
+            BackgroundColor="Black"
+            EmptyView="Aun no han registrado elementos en la lista"
+            ItemsSource="{Binding Items} ">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="{x:Type models:ShopListItem}">
+                    <Border
+                        Stroke="DarkGray"
+                        StrokeThickness ="1"
+                        Padding="8,0">
+                        <Grid
+                            ColumnDefinitions="3*,*,AUTO">
+                            <Label
+                                Grid.Column="0"
+                                Text="{Binding Nombre}"
+                                VerticalOptions="Center"/>
+
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding Cantidad}"
+                                VerticalOptions="Center"/>
+
+                            <HorizontalStackLayout
+                                Grid.Column="2">
+                                <CheckBox
+                                    IsChecked="{Binding Comprado}"/>
+                                <Label
+                                    Text="Comprado"
+                                    VerticalOptions="Center"/>
+
+                            </HorizontalStackLayout>
+
+                        </Grid>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Text="+"
+            Command="{Binding Path=ShowNewItemFromCommand}"
+            WidthRequest="56"
+            HeightRequest="56"
+            FontSize="24"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            Margin="16">
+            
+        </Button>
+        
+    </Grid>
+    
+    
+</ContentPage>

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ShopList.Maui/ShopList.Maui.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>
